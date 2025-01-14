@@ -1,0 +1,11 @@
+import pandas as pd
+
+# Read the CSV file
+csv_file = 'results copy 2.csv'
+data = pd.read_csv(csv_file)
+
+# Calculate the best parameter (c1) for the combination of dataset, flip percentage, and model with the best average accuracy
+best_combination = data.groupby(['dataset', 'flip_percentage', 'tree_type', 'parameters'])['accuracy'].mean().idxmax()
+best_c1 = best_combination[3]
+
+print(f"The best parameter (c1) is: {best_c1}")
